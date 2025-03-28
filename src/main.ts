@@ -1,5 +1,16 @@
 import { createApp } from 'vue'
-import './style.css'
+import { createI18n } from 'vue-i18n'
 import App from './App.vue'
+import './style.css'
+import fr from './locale/fr.json'
 
-createApp(App).mount('#app')
+const i18n = createI18n({
+  locale: 'fr',
+  messages: {
+    fr,
+  }
+})
+
+createApp(App)
+  .use(i18n)
+  .mount('#app')

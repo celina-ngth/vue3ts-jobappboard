@@ -1,7 +1,5 @@
-<script setup lang="ts">
-defineProps<{ msg: string }>()
-</script>
+<script setup lang="ts"></script>
 
 <template>
-	<h1 class="container">{{ msg }}</h1>
+	<h1 class="container">{{ $t('dashboard.title') }}</h1>
 </template>
