@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Text from '@/components/ui/Text.vue'
+</script>
 
 <template>
-	<h1 class="container">{{ $t('dashboard.title') }}</h1>
+	<Text tag="h1">{{ $t('dashboard.title') }}</Text>
 </template>
