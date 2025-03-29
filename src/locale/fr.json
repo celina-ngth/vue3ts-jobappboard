@@ -1,5 +1,17 @@
 {
   "dashboard": {
-    "title": "Vos candidatures"
+    "title": "Vos candidatures",
+    "wishlist": {
+      "title": "Wishlist"
+    },
+    "applied": {
+      "title": "Candidature envoyée"
+    },
+    "interview": {
+      "title": "Entretien"
+    },
+    "rejected": {
+      "title": "Candidature refusée"
+    }
   }
 }
