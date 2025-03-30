@@ -12,6 +12,9 @@
       "title": "Inscription",
       "button": "S'inscrire",
       "hasAccount": "Vous avez déjà un compte ?"
+    },
+    "logout": {
+      "button": "Se déconnecter"
     }
   },
   "dashboard": {

@@ -11,7 +11,7 @@ const textClasses = {
 	h2: 'text-xl font-semibold pb-3',
 	h3: 'text-lg font-semibold pb-2',
 	h4: 'text-sm font-semibold pb-2',
-	p: 'text-md pb-2'
+	p: 'text-base pb-2'
 }[props.tag]
 </script>
 

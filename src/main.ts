@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import App from './App.vue'
 import './style.css'
 import fr from './locale/fr.json'
@@ -14,6 +15,7 @@ const i18n = createI18n({
 })
 
 const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 
 createApp(App)
   .use(i18n)
