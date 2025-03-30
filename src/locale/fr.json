@@ -1,4 +1,19 @@
 {
+  "common": {
+    "title": "Job application board"
+  },
+  "authentication": {
+    "login": {
+      "title": "Connexion",
+      "button": "Se connecter",
+      "noAccount": "Vous n'avez pas encore de compte ?"
+    },
+    "signup": {
+      "title": "Inscription",
+      "button": "S'inscrire",
+      "hasAccount": "Vous avez déjà un compte ?"
+    }
+  },
   "dashboard": {
     "title": "Vos candidatures",
     "wishlist": {

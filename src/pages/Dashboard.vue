@@ -53,35 +53,39 @@ const columns = ref<Column[]>([
 </script>
 
 <template>
-	<Text tag="h1">{{ $t('dashboard.title') }}</Text>
+	<div class="container">
+		<Text tag="h1">{{ $t('dashboard.title') }}</Text>
 
-	<div class="flex items-start gap-4">
-		<div v-for="column in columns" :key="column.id" class="flex w-full gap-4">
-			<div
-				class="flex w-full flex-col content-center items-center justify-center gap-2 rounded border border-gray-200 p-3"
-			>
+		<div class="flex items-start gap-4">
+			<div v-for="column in columns" :key="column.id" class="flex w-full gap-4">
 				<div
-					class="flex w-full content-center items-center justify-center gap-2"
+					class="flex w-full flex-col content-center items-center justify-center gap-2 overflow-hidden rounded-md border border-gray-300"
 				>
-					<Icon :name="column.icon" class="mb-2" />
-					<Text tag="h4" class="text-center uppercase">
-						{{ column.title }}
-					</Text>
+					<div
+						class="flex w-full content-center items-center justify-center gap-2 bg-slate-300 px-3 pt-2"
+					>
+						<Icon :name="column.icon" class="mb-2" />
+						<Text tag="h4" class="text-center uppercase">
+							{{ column.title }}
+						</Text>
+					</div>
+
+					<div class="flex w-full flex-col gap-2 p-3">
+						<Button full-width><Icon name="Plus" /></Button>
+
+						<Draggable
+							v-model="column.jobs"
+							group="jobs"
+							item-key="id"
+							:animation="100"
+							class="flex w-full flex-col gap-2"
+						>
+							<template #item="{ element: job }">
+								<JobCard :job="job" />
+							</template>
+						</Draggable>
+					</div>
 				</div>
-
-				<Button full-width><Icon name="Plus" /></Button>
-
-				<Draggable
-					v-model="column.jobs"
-					group="jobs"
-					item-key="id"
-					:animation="100"
-					class="flex w-full flex-col gap-2"
-				>
-					<template #item="{ element: job }">
-						<JobCard :job="job" />
-					</template>
-				</Draggable>
 			</div>
 		</div>
 	</div>
