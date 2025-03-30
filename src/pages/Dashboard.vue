@@ -71,13 +71,17 @@ const columns = ref<Column[]>([
 
 				<Button full-width><Icon name="Plus" /></Button>
 
-				<div
-					v-for="job in column.jobs"
-					:key="job.id"
+				<Draggable
+					v-model="column.jobs"
+					group="jobs"
+					item-key="id"
+					:animation="100"
 					class="flex w-full flex-col gap-2"
 				>
-					<JobCard :job="job" />
-				</div>
+					<template #item="{ element: job }">
+						<JobCard :job="job" />
+					</template>
+				</Draggable>
 			</div>
 		</div>
 	</div>
