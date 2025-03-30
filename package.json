@@ -13,6 +13,7 @@
     "@vue/runtime-core": "^3.5.13",
     "firebase": "^11.5.0",
     "lucide-vue-next": "^0.485.0",
+    "pinia": "^3.0.1",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "radix-vue": "^1.9.17",
