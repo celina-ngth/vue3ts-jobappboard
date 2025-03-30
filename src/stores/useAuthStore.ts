@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { auth } from '@/services/firebase'
-import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { onAuthStateChanged, signOut, updateProfile } from 'firebase/auth'
 
 interface User {
   uid: string
@@ -26,13 +26,26 @@ export const useAuthStore = defineStore(
       isAuthenticated.value = Boolean(firebaseUser)
     })
 
+    const updateDisplayName = async (displayName: string) => {
+      if (!auth.currentUser) return
+
+      try {
+        await updateProfile(auth.currentUser, { displayName })
+        if (user.value) {
+          user.value.displayName = displayName
+        }
+      } catch (error) {
+        console.error('Erreur lors de la mise à jour du nom :', error)
+      }
+    }
+
     const logout = async () => {
       await signOut(auth)
       user.value = null
       isAuthenticated.value = false
     }
 
-    return { user, isAuthenticated, logout }
+    return { user, isAuthenticated, logout, updateDisplayName }
   },
   {
     persist: {
