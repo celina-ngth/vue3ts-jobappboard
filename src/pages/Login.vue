@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import Text from '@/components/ui/Text.vue'
 import Button from '@/components/ui/Button.vue'
 import { useAuth } from '@/composables/useAuth'
+import { FwbInput } from 'flowbite-vue'
 
 const router = useRouter()
 const { login } = useAuth()
@@ -28,17 +29,19 @@ const handleLogin = async () => {
 			<Text tag="h1">{{ $t('authentication.login.title') }}</Text>
 
 			<div class="flex w-1/2 flex-col gap-3">
-				<input
+				<FwbInput
 					v-model="email"
+					label="Email"
 					type="email"
-					placeholder="Email"
-					class="rounded-md border border-gray-300 p-2"
+					placeholder="Votre adresse mail"
+					class="p-2"
 				/>
-				<input
+				<FwbInput
 					v-model="password"
 					type="password"
+					label="Mot de passe"
 					placeholder="Mot de passe"
-					class="rounded-md border border-gray-300 p-2"
+					class="p-2"
 				/>
 
 				<Button variant="information" type="submit">

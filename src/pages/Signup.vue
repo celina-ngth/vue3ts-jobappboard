@@ -4,19 +4,19 @@ import { useRouter } from 'vue-router'
 import Text from '@/components/ui/Text.vue'
 import Button from '@/components/ui/Button.vue'
 import { useAuth } from '@/composables/useAuth'
+import { FwbInput } from 'flowbite-vue'
 
 const router = useRouter()
 const { signup } = useAuth()
 
-const firstname = ref('')
-const lastname = ref('')
+const displayName = ref('')
 const email = ref('')
 const password = ref('')
 const errorMessage = ref('')
 
 const handleSignup = async () => {
 	try {
-		await signup(email.value, password.value)
+		await signup(email.value, password.value, displayName.value)
 		router.push('/')
 	} catch (error) {
 		errorMessage.value = 'Erreur : ' + error.message
@@ -30,29 +30,25 @@ const handleSignup = async () => {
 			<Text tag="h1">{{ $t('authentication.signup.title') }}</Text>
 
 			<div class="flex w-1/2 flex-col gap-3">
-				<input
-					v-model="firstname"
-					type="firstname"
-					placeholder="Prénom"
-					class="rounded-md border border-gray-300 p-2"
+				<FwbInput
+					v-model="displayName"
+					label="Nom d'utilisateur"
+					placeholder="Entrez votre nom d'utilisateur"
+					class="p-2"
 				/>
-				<input
-					v-model="lastname"
-					type="lastname"
-					placeholder="Nom"
-					class="rounded-md border border-gray-300 p-2"
-				/>
-				<input
+				<FwbInput
 					v-model="email"
+					label="Email"
 					type="email"
-					placeholder="Email"
-					class="rounded-md border border-gray-300 p-2"
+					placeholder="Votre adresse mail"
+					class="p-2"
 				/>
-				<input
+				<FwbInput
 					v-model="password"
+					label="Mot de passe"
 					type="password"
 					placeholder="Mot de passe"
-					class="rounded-md border border-gray-300 p-2"
+					class="p-2"
 				/>
 
 				<Button variant="information" type="submit">
