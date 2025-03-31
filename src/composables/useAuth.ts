@@ -2,8 +2,9 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword
 } from 'firebase/auth'
-import { auth } from '@/services/firebase'
+import { auth, db } from '@/services/firebase'
 import { useAuthStore } from '@/stores/useAuthStore'
+import { doc, setDoc } from "firebase/firestore"
 
 export function useAuth() {
   const useAuthStoreInstance = useAuthStore()
@@ -28,15 +29,29 @@ export function useAuth() {
     }
   }
 
-  const signup = async (email: string, password: string) => {
+  const signup = async (email: string, password: string, displayName: string) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       )
-      console.log('signup', userCredential.user)
-      return userCredential.user
+      const newUser = userCredential.user
+
+      await setDoc(doc(db, "users", newUser.uid), {
+        displayName,
+        email,
+        wishlist: [{
+          id: 'job-1',
+          company: 'Google',
+          jobTitle: 'Développeur front-end',
+          url: 'https://google.com',
+          note: ''
+        }]
+      })
+
+      useAuthStoreInstance.user = newUser
+
     } catch (error) {
       throw error
     }
