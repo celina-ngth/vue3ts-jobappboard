@@ -31,5 +31,9 @@
     "rejected": {
       "title": "Candidature refusée"
     }
+  },
+  "profile": {
+    "title": "Mon profil",
+    "updateButton": "Mettre à jour"
   }
 }

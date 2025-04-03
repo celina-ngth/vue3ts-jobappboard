@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Text from '@/components/ui/Text.vue'
-import Button from '@/components/ui/Button.vue'
+import Button from '@/components/ui/button/Button.vue'
 import { useAuth } from '@/composables/useAuth'
-import { FwbInput } from 'flowbite-vue'
+import Input from '@/components/ui/input/Input.vue'
 
 const router = useRouter()
 const { login } = useAuth()
@@ -29,14 +29,14 @@ const handleLogin = async () => {
 			<Text tag="h1">{{ $t('authentication.login.title') }}</Text>
 
 			<div class="flex w-1/2 flex-col gap-3">
-				<FwbInput
+				<Input
 					v-model="email"
 					label="Email"
 					type="email"
 					placeholder="Votre adresse mail"
 					class="p-2"
 				/>
-				<FwbInput
+				<Input
 					v-model="password"
 					type="password"
 					label="Mot de passe"
@@ -44,14 +44,14 @@ const handleLogin = async () => {
 					class="p-2"
 				/>
 
-				<Button variant="information" type="submit">
+				<Button type="submit" variant="default">
 					{{ $t('authentication.login.button') }}
 				</Button>
 
 				<div class="flex gap-2">
 					{{ $t('authentication.signup.hasAccount') }}
 					<RouterLink to="/signup">
-						<Button link>
+						<Button variant="link" size="sm">
 							{{ $t('authentication.signup.button') }}
 						</Button>
 					</RouterLink>
