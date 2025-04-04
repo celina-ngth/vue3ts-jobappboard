@@ -1,0 +1,18 @@
+{
+  "jobs": [
+    {
+      "id": "1",
+      "company": "Google",
+      "job": "Software Engineer",
+      "status": "saved",
+      "userId": "XCk0lQZhSPcqoqUZvdQgbgxxxnC2"
+    },
+    {
+      "id": "2",
+      "company": "Facebook",
+      "job": "Software Engineer",
+      "status": "saved",
+      "userId": "XCk0lQZhSPcqoqUZvdQgbgxxxnC2"
+    }
+  ]
+}

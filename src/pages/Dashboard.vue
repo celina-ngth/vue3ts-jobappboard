@@ -5,6 +5,7 @@ import Icon from '@/components/ui/Icon.vue'
 import JobCard from '@/components/Dashboard/JobCard.vue'
 import Draggable from 'vuedraggable'
 import { defineAsyncComponent, ref } from 'vue'
+import { Job } from '@/api/jobs/types'
 
 const AddJobModal = defineAsyncComponent(
 	() => import('@/components/Dashboard/AddJobModal.vue')
@@ -13,11 +14,6 @@ const AddJobModal = defineAsyncComponent(
 const { t } = useI18n()
 
 const openModal = ref(false)
-
-export interface Job {
-	id: string
-	title: string
-}
 
 interface Column {
 	id: string
@@ -31,10 +27,7 @@ const columns = ref<Column[]>([
 		id: 'saved',
 		title: t('dashboard.saved.title'),
 		icon: 'Sparkles',
-		jobs: [
-			{ id: 'job-1', title: 'Google' },
-			{ id: 'job-2', title: 'Facebook' }
-		]
+		jobs: []
 	},
 	{
 		id: 'applied',
