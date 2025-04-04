@@ -14,7 +14,7 @@
       "hasAccount": "Vous avez déjà un compte ?"
     },
     "logout": {
-      "button": "Se déconnecter"
+      "button": "Déconnexion"
     }
   },
   "dashboard": {
@@ -31,6 +31,9 @@
     "rejected": {
       "title": "Candidature refusée"
     }
+  },
+  "navigation": {
+    "greetings": "Hello {name} 👋"
   },
   "profile": {
     "title": "Mon profil",

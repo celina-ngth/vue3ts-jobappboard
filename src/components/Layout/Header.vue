@@ -41,25 +41,22 @@ const handleLogout = () => {
 				<NavigationMenuList>
 					<NavigationMenuItem>
 						<NavigationMenuTrigger>
-							Hello {{ user.displayName ?? user.email }} 👋
+							{{
+								$t('navigation.greetings', {
+									name: user.displayName ?? user.email
+								})
+							}}
 						</NavigationMenuTrigger>
 
-						<NavigationMenuContent>
+						<NavigationMenuContent class="w-[150px]">
 							<NavigationMenuLink as-child>
 								<RouterLink to="/profile">
-									<div
-										class="w-[200px] px-2 py-3 hover:cursor-pointer hover:bg-slate-100"
-									>
-										Profil
-									</div>
+									<div class="w-full">Profil</div>
 								</RouterLink>
 							</NavigationMenuLink>
 
 							<NavigationMenuLink as-child>
-								<div
-									@click="handleLogout"
-									class="w-[200px] px-2 py-3 hover:cursor-pointer hover:bg-slate-100"
-								>
+								<div @click="handleLogout" class="w-full hover:cursor-pointer">
 									{{ $t('authentication.logout.button') }}
 								</div>
 							</NavigationMenuLink>
