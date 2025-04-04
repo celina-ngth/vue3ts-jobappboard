@@ -19,8 +19,8 @@
   },
   "dashboard": {
     "title": "Vos candidatures",
-    "wishlist": {
-      "title": "Wishlist"
+    "saved": {
+      "title": "Sauvegardé"
     },
     "applied": {
       "title": "Candidature envoyée"

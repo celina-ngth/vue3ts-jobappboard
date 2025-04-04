@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import Text from '@/components/ui/Text.vue'
-import Button from '@/components/ui/button/Button.vue'
 import Icon from '@/components/ui/Icon.vue'
 import JobCard from '@/components/Dashboard/JobCard.vue'
 import Draggable from 'vuedraggable'
@@ -29,8 +28,8 @@ interface Column {
 
 const columns = ref<Column[]>([
 	{
-		id: 'wishlist',
-		title: t('dashboard.wishlist.title'),
+		id: 'saved',
+		title: t('dashboard.saved.title'),
 		icon: 'Sparkles',
 		jobs: [
 			{ id: 'job-1', title: 'Google' },
@@ -77,9 +76,11 @@ const columns = ref<Column[]>([
 					</div>
 
 					<div class="flex w-full flex-col gap-2 p-3">
-						<Button full-width @click="openModal = true">
-							<Icon name="Plus" />
-						</Button>
+						<AddJobModal
+							:open-modal="openModal"
+							@close-modal="openModal = false"
+							class="h-[100px] w-full"
+						/>
 
 						<Draggable
 							v-model="column.jobs"
@@ -96,11 +97,5 @@ const columns = ref<Column[]>([
 				</div>
 			</div>
 		</div>
-
-		<AddJobModal
-			:open-modal="openModal"
-			@close-modal="openModal = false"
-			class="h-[100px] w-full"
-		/>
 	</div>
 </template>

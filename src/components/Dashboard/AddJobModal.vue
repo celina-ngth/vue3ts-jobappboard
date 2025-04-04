@@ -10,6 +10,7 @@ import {
 	DialogTrigger
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
+import Icon from '@/components/ui/Icon.vue'
 
 defineProps({
 	openModal: {
@@ -23,28 +24,43 @@ const emit = defineEmits(['closeModal'])
 <template>
 	<Dialog>
 		<DialogTrigger as-child>
-			<Button variant="outline"> Edit Profile </Button>
+			<Button>
+				<Icon name="Plus" />
+			</Button>
 		</DialogTrigger>
 
-		<DialogContent class="sm:max-w-[425px]">
+		<DialogContent class="sm:max-w-[600px]">
 			<DialogHeader>
-				<DialogTitle>Edit profile</DialogTitle>
+				<DialogTitle>Ajouter un job</DialogTitle>
 				<DialogDescription>
-					Make changes to your profile here. Click save when you're done.
+					Ajoutez les détails de l'offre d'emploi qui vous intéresse pour
+					l’intégrer à votre tableau de Suivi des candidatures.
 				</DialogDescription>
 			</DialogHeader>
 
-			<div class="grid gap-4 py-4">
-				<div class="grid grid-cols-4 items-center gap-4">
-					<Input id="name" value="Pedro Duarte" class="col-span-3" />
+			<div class="grid gap-4">
+				<div class="grid gap-1">
+					<Label for="offer">Nom du poste</Label>
+					<Input
+						id="offer"
+						value="Offre d'emploi"
+						label="Offre"
+						class="col-span-3"
+					/>
 				</div>
-				<div class="grid grid-cols-4 items-center gap-4">
-					<Input id="username" value="@peduarte" class="col-span-3" />
+				<div class="grid gap-1">
+					<Label for="company">Nom de l'entreprise</Label>
+					<Input
+						id="company"
+						value="Offre d'emploi"
+						label="Offre"
+						class="col-span-3"
+					/>
 				</div>
 			</div>
 
 			<DialogFooter>
-				<Button type="submit"> Save changes </Button>
+				<Button type="submit"> Ajouter ce job </Button>
 			</DialogFooter>
 		</DialogContent>
 	</Dialog>
