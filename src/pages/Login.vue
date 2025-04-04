@@ -24,41 +24,39 @@ const handleLogin = async () => {
 </script>
 
 <template>
-	<form @submit.prevent="handleLogin" class="space-y-4">
-		<div class="flex min-h-[600px] flex-col items-center justify-center">
-			<Text tag="h1">{{ $t('authentication.login.title') }}</Text>
+	<form @submit.prevent="handleLogin">
+		<Text tag="h1">{{ $t('authentication.login.title') }}</Text>
 
-			<div class="flex w-1/2 flex-col gap-3">
-				<Input
-					v-model="email"
-					label="Email"
-					type="email"
-					placeholder="Votre adresse mail"
-					class="p-2"
-				/>
-				<Input
-					v-model="password"
-					type="password"
-					label="Mot de passe"
-					placeholder="Mot de passe"
-					class="p-2"
-				/>
+		<div class="flex flex-col gap-3">
+			<Input
+				v-model="email"
+				label="Email"
+				type="email"
+				placeholder="Votre adresse mail"
+				class="p-2"
+			/>
+			<Input
+				v-model="password"
+				type="password"
+				label="Mot de passe"
+				placeholder="Mot de passe"
+				class="p-2"
+			/>
 
-				<Button type="submit" variant="default">
-					{{ $t('authentication.login.button') }}
-				</Button>
+			<Button type="submit" variant="default">
+				{{ $t('authentication.login.button') }}
+			</Button>
 
-				<div class="flex gap-2">
-					{{ $t('authentication.signup.hasAccount') }}
-					<RouterLink to="/signup">
-						<Button variant="link" size="sm">
-							{{ $t('authentication.signup.button') }}
-						</Button>
-					</RouterLink>
-				</div>
-
-				<p v-if="errorMessage" class="text-red-500">{{ errorMessage }}</p>
+			<div class="flex items-center gap-2">
+				<div>{{ $t('authentication.signup.hasAccount') }}</div>
+				<RouterLink to="/signup">
+					<Button variant="link" class="hover:cursor-pointer">
+						{{ $t('authentication.signup.button') }}
+					</Button>
+				</RouterLink>
 			</div>
+
+			<p v-if="errorMessage" class="text-red-500">{{ errorMessage }}</p>
 		</div>
 	</form>
 </template>

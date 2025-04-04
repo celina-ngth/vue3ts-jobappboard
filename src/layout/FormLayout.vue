@@ -7,8 +7,12 @@ import Header from '@/components/Layout/Header.vue'
 	<div class="flex flex-col">
 		<Header />
 
-		<main class="mt-20">
-			<RouterView />
-		</main>
+		<div
+			class="container flex min-h-[600px] w-full flex-col items-center justify-center"
+		>
+			<div class="w-[600px]">
+				<RouterView />
+			</div>
+		</div>
 	</div>
 </template>

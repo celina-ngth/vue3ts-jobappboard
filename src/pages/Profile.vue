@@ -3,6 +3,10 @@ import { ref } from 'vue'
 import { useAuthStore } from '@/stores/useAuthStore'
 import Button from '@/components/ui/button/Button.vue'
 import Input from '@/components/ui/input/Input.vue'
+import { toast } from 'vue-sonner'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const authStore = useAuthStore()
 const newDisplayName = ref(authStore.user?.displayName || '')
@@ -10,6 +14,10 @@ const newDisplayName = ref(authStore.user?.displayName || '')
 const saveDisplayName = async () => {
 	if (!newDisplayName.value.trim()) return
 	await authStore.updateDisplayName(newDisplayName.value)
+
+	toast.success(t('profile.updatedMessage'), {
+		duration: 3000
+	})
 }
 </script>
 

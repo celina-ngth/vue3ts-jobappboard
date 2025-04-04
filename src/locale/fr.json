@@ -37,6 +37,7 @@
   },
   "profile": {
     "title": "Mon profil",
-    "updateButton": "Mettre à jour"
+    "updateButton": "Mettre à jour",
+    "updatedMessage": "Votre profil a été mis à jour"
   }
 }

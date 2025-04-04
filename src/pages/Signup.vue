@@ -25,47 +25,45 @@ const handleSignup = async () => {
 </script>
 
 <template>
-	<form @submit.prevent="handleSignup" class="space-y-4">
-		<div class="flex min-h-[600px] flex-col items-center justify-center">
-			<Text tag="h1">{{ $t('authentication.signup.title') }}</Text>
+	<form @submit.prevent="handleSignup">
+		<Text tag="h1">{{ $t('authentication.signup.title') }}</Text>
 
-			<div class="flex w-1/2 flex-col gap-3">
-				<Input
-					v-model="displayName"
-					label="Nom d'utilisateur"
-					placeholder="Entrez votre nom d'utilisateur"
-					class="p-2"
-				/>
-				<Input
-					v-model="email"
-					label="Email"
-					type="email"
-					placeholder="Votre adresse mail"
-					class="p-2"
-				/>
-				<Input
-					v-model="password"
-					label="Mot de passe"
-					type="password"
-					placeholder="Mot de passe"
-					class="p-2"
-				/>
+		<div class="flex flex-col gap-3">
+			<Input
+				v-model="displayName"
+				label="Nom d'utilisateur"
+				placeholder="Entrez votre nom d'utilisateur"
+				class="p-2"
+			/>
+			<Input
+				v-model="email"
+				label="Email"
+				type="email"
+				placeholder="Votre adresse mail"
+				class="p-2"
+			/>
+			<Input
+				v-model="password"
+				label="Mot de passe"
+				type="password"
+				placeholder="Mot de passe"
+				class="p-2"
+			/>
 
-				<Button type="submit">
-					{{ $t('authentication.signup.button') }}
-				</Button>
+			<Button type="submit">
+				{{ $t('authentication.signup.button') }}
+			</Button>
 
-				<div class="flex gap-2">
-					{{ $t('authentication.login.noAccount') }}
-					<RouterLink to="/login">
-						<Button variant="link" size="sm">
-							{{ $t('authentication.login.button') }}
-						</Button>
-					</RouterLink>
-				</div>
-
-				<p v-if="errorMessage" class="text-red-500">{{ errorMessage }}</p>
+			<div class="flex items-center gap-2">
+				<div>{{ $t('authentication.login.noAccount') }}</div>
+				<RouterLink to="/login">
+					<Button variant="link" class="hover:cursor-pointer">
+						{{ $t('authentication.login.button') }}
+					</Button>
+				</RouterLink>
 			</div>
+
+			<p v-if="errorMessage" class="text-red-500">{{ errorMessage }}</p>
 		</div>
 	</form>
 </template>
