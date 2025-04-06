@@ -32,7 +32,7 @@ export const formatJobBoard = (data: Job[]): JobBoard[] => {
 }
 
 
-const formatJob = (job: Job): Job => {
+export const formatJob = (job: Job): Job => {
   return {
     id: job.id,
     company: job.company,

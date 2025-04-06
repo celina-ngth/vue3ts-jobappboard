@@ -25,6 +25,8 @@ const handleSubmit = (type: JobStatus) => {
 	<div class="container">
 		<Text tag="h1">{{ $t('dashboard.title') }}</Text>
 
+		<div v-if="!columns?.length">Veuillez vous connecter</div>
+
 		<div v-if="isLoading">
 			<Icon name="LoaderCircle" class="mx-auto size-8 animate-spin" />
 		</div>
