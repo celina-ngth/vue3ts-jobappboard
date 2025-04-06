@@ -6,12 +6,19 @@ import Icon from '@/components/ui/Icon.vue'
 import JobCard from '@/components/Dashboard/JobCard.vue'
 import AddJobModal from '@/components/Dashboard/AddJobModal.vue'
 import { useJobs } from '@/composables/useJobs'
+import { JobStatus } from '@/api/jobs/types'
 
-const { data, isLoading } = useJobs()
+const { jobsQuery } = useJobs()
+const { data, isLoading } = jobsQuery()
 
 const openModal = ref(false)
 
 const columns = computed(() => data.value)
+
+const handleSubmit = (type: JobStatus) => {
+	openModal.value = false
+	console.log({ type })
+}
 </script>
 
 <template>
@@ -39,7 +46,8 @@ const columns = computed(() => data.value)
 					<div class="flex w-full flex-col gap-2 p-3">
 						<AddJobModal
 							:open-modal="openModal"
-							@close-modal="openModal = false"
+							:status="column.id"
+							@close-modal="handleSubmit(column.id)"
 							class="h-[100px] w-full"
 						/>
 

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { PropType, reactive } from 'vue'
 import { Button } from '@/components/ui/button'
 import {
 	Dialog,
@@ -12,14 +13,29 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import Icon from '@/components/ui/Icon.vue'
+import { Job, JobStatus } from '@/api/jobs/types'
 
-defineProps({
+const props = defineProps({
 	openModal: {
 		type: Boolean
+	},
+	status: {
+		type: String as PropType<JobStatus>
 	}
 })
 
 const emit = defineEmits(['closeModal'])
+
+const offer = reactive<Job>({
+	id: Date.now().toString(),
+	title: '',
+	company: '',
+	status: props.status
+})
+
+const onSubmit = () => {
+	console.log(offer)
+}
 </script>
 
 <template>
@@ -35,33 +51,23 @@ const emit = defineEmits(['closeModal'])
 				<DialogTitle>Ajouter un job</DialogTitle>
 				<DialogDescription>
 					Ajoutez les détails de l'offre d'emploi qui vous intéresse pour
-					l’intégrer à votre tableau de Suivi des candidatures.
+					l’intégrer à votre Dashboard de suivi des candidatures.
 				</DialogDescription>
 			</DialogHeader>
 
 			<div class="grid gap-4">
-				<div class="grid gap-1">
-					<Label for="offer">Nom du poste</Label>
-					<Input
-						id="offer"
-						value="Offre d'emploi"
-						label="Offre"
-						class="col-span-3"
-					/>
+				<div class="grid gap-2">
+					<Label for="offer">Nom du poste {{ offer.title }}</Label>
+					<Input v-model="offer.title" id="offer" />
 				</div>
-				<div class="grid gap-1">
-					<Label for="company">Nom de l'entreprise</Label>
-					<Input
-						id="company"
-						value="Offre d'emploi"
-						label="Offre"
-						class="col-span-3"
-					/>
+				<div class="grid gap-2">
+					<Label for="company">Entreprise {{ offer.company }}</Label>
+					<Input v-model="offer.company" id="company" />
 				</div>
 			</div>
 
 			<DialogFooter>
-				<Button type="submit"> Ajouter ce job </Button>
+				<Button type="submit" @click="onSubmit">Ajouter cette offre</Button>
 			</DialogFooter>
 		</DialogContent>
 	</Dialog>

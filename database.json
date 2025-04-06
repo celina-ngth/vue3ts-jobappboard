@@ -21,5 +21,15 @@
       "status": "applied",
       "userId": "XCk0lQZhSPcqoqUZvdQgbgxxxnC2"
     }
+  ],
+  "user": [
+    {
+      "id": "XCk0lQZhSPcqoqUZvdQgbgxxxnC2",
+      "jobs": [
+        "1",
+        "2",
+        "3"
+      ]
+    }
   ]
 }

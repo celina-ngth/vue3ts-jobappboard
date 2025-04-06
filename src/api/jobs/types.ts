@@ -12,7 +12,6 @@ export interface Job {
   status: JobStatus
 }
 
-
 export interface JobBoard {
   id: JobStatus
   icon: string

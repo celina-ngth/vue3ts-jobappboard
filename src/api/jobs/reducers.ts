@@ -1,48 +1,42 @@
-import { JobStatus, type JobBoard } from "./types"
+import { JobStatus, type Job, type JobBoard } from "./types"
 
-export const formatJobBoard = (data: any): JobBoard[] => {
-  const jobs = data ?? []
-  const savedJobs = jobs.filter((job: any) => job.status === 'saved')
-  const appliedJobs = jobs.filter((job: any) => job.status === 'applied')
-  const interviewJobs = jobs.filter((job: any) => job.status === 'interview')
-  const rejectedJobs = jobs.filter((job: any) => job.status === 'rejected')
+export const formatJobBoard = (data: Job[]): JobBoard[] => {
+  const jobs = data.map((job: Job) => formatJob(job)) ?? []
+  const savedJobs = jobs.filter((job: Job) => job.status === JobStatus.Saved)
+  const appliedJobs = jobs.filter((job: Job) => job.status === JobStatus.Applied)
+  const interviewJobs = jobs.filter((job: Job) => job.status === JobStatus.Interview)
+  const rejectedJobs = jobs.filter((job: Job) => job.status === JobStatus.Rejected)
 
   return [
     {
       id: JobStatus.Saved,
       icon: 'Sparkles',
-      jobs: savedJobs.map((job: any) => ({
-        id: job.id,
-        company: job.company,
-        title: job.title
-      }))
+      jobs: savedJobs
     },
     {
       id: JobStatus.Applied,
       icon: 'FileCheck',
-      jobs: appliedJobs.map((job: any) => ({
-        id: job.id,
-        company: job.company,
-        title: job.title
-      }))
+      jobs: appliedJobs
     },
     {
       id: JobStatus.Interview,
       icon: 'BriefcaseBusiness',
-      jobs: interviewJobs.map((job: any) => ({
-        id: job.id,
-        company: job.company,
-        title: job.title
-      }))
+      jobs: interviewJobs
     },
     {
       id: JobStatus.Rejected,
       icon: 'ThumbsDown',
-      jobs: rejectedJobs.map((job: any) => ({
-        id: job.id,
-        company: job.company,
-        title: job.title
-      }))
+      jobs: rejectedJobs
     }
   ]
+}
+
+
+const formatJob = (job: Job): Job => {
+  return {
+    id: job.id,
+    company: job.company,
+    title: job.title,
+    status: job.status
+  }
 }
