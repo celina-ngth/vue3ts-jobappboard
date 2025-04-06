@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.0",
+    "@tanstack/vue-query": "^5.71.10",
+    "@tanstack/vue-query-devtools": "^5.71.10",
     "@vue/runtime-core": "^3.5.13",
     "@vueuse/core": "^13.0.0",
     "autoprefixer": "^10.4.21",

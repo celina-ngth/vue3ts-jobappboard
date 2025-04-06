@@ -3,15 +3,22 @@
     {
       "id": "1",
       "company": "Google",
-      "job": "Software Engineer",
+      "title": "Software Engineer",
       "status": "saved",
       "userId": "XCk0lQZhSPcqoqUZvdQgbgxxxnC2"
     },
     {
       "id": "2",
       "company": "Facebook",
-      "job": "Software Engineer",
+      "title": "Software Engineer",
       "status": "saved",
+      "userId": "XCk0lQZhSPcqoqUZvdQgbgxxxnC2"
+    },
+    {
+      "id": "3",
+      "company": "Maisons du Monde",
+      "title": "Software Engineer",
+      "status": "applied",
       "userId": "XCk0lQZhSPcqoqUZvdQgbgxxxnC2"
     }
   ]

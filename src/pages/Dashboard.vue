@@ -1,60 +1,28 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
+import { computed, ref } from 'vue'
+import Draggable from 'vuedraggable'
 import Text from '@/components/ui/Text.vue'
 import Icon from '@/components/ui/Icon.vue'
 import JobCard from '@/components/Dashboard/JobCard.vue'
-import Draggable from 'vuedraggable'
-import { defineAsyncComponent, ref } from 'vue'
-import { Job } from '@/api/jobs/types'
+import AddJobModal from '@/components/Dashboard/AddJobModal.vue'
+import { useJobs } from '@/composables/useJobs'
 
-const AddJobModal = defineAsyncComponent(
-	() => import('@/components/Dashboard/AddJobModal.vue')
-)
-
-const { t } = useI18n()
+const { data, isLoading } = useJobs()
 
 const openModal = ref(false)
 
-interface Column {
-	id: string
-	title: string
-	icon: string
-	jobs: Job[]
-}
-
-const columns = ref<Column[]>([
-	{
-		id: 'saved',
-		title: t('dashboard.saved.title'),
-		icon: 'Sparkles',
-		jobs: []
-	},
-	{
-		id: 'applied',
-		title: t('dashboard.applied.title'),
-		icon: 'FileCheck',
-		jobs: []
-	},
-	{
-		id: 'interview',
-		title: t('dashboard.interview.title'),
-		icon: 'BriefcaseBusiness',
-		jobs: []
-	},
-	{
-		id: 'rejected',
-		title: t('dashboard.rejected.title'),
-		icon: 'ThumbsDown',
-		jobs: []
-	}
-])
+const columns = computed(() => data.value)
 </script>
 
 <template>
 	<div class="container">
 		<Text tag="h1">{{ $t('dashboard.title') }}</Text>
 
-		<div class="flex items-start gap-4">
+		<div v-if="isLoading">
+			<Icon name="LoaderCircle" class="mx-auto size-8 animate-spin" />
+		</div>
+
+		<div v-else class="flex items-start gap-4">
 			<div v-for="column in columns" :key="column.id" class="flex w-full gap-4">
 				<div
 					class="flex w-full flex-col content-center items-center justify-center gap-2 overflow-hidden rounded-md border border-gray-300"
@@ -64,7 +32,7 @@ const columns = ref<Column[]>([
 					>
 						<Icon :name="column.icon" class="mb-2" />
 						<Text tag="h4" class="text-center uppercase">
-							{{ column.title }}
+							{{ $t(`dashboard.${column.id}.title`) }}
 						</Text>
 					</div>
 
