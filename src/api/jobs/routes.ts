@@ -43,6 +43,36 @@ class JobAPI {
     }
   }
 
+  async addJob(job: Job, uid: string | undefined) {
+    if (!uid) return
+
+    const response = await fetch(`${API_CONFIG.API_URL}/user/${uid}`)
+    const data = await response.json()
+
+    const [jobResponse, userResponse] = await Promise.all([
+      fetch(`${API_CONFIG.API_URL}/jobs`, {
+        method: 'POST',
+        redirect: 'manual',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(job),
+      }),
+      fetch(`${API_CONFIG.API_URL}/user/${uid}`, {
+        method: 'PATCH',
+        redirect: 'manual',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          jobs: [...data?.jobs, job.id],
+        }),
+      }),
+    ])
+
+    if (!jobResponse.ok || !userResponse.ok) {
+      throw new Error(
+        `Jobs API Error : ${jobResponse.statusText} ${userResponse.statusText}`
+      )
+    }
+  }
+
 }
 
 export const jobAPI = new JobAPI()
