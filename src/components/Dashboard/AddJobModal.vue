@@ -15,7 +15,9 @@ import Icon from '@/components/ui/Icon.vue'
 import { Job, JobStatus } from '@/api/jobs/types'
 import { useJobs } from '@/composables/useJobs'
 import { toast } from 'vue-sonner'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const { addJobMutation } = useJobs()
 
 const props = defineProps({
@@ -35,7 +37,7 @@ const open = ref(false)
 
 const onSubmit = () => {
 	addJobMutation.mutate(newJob)
-	toast.success(`Added ${newJob.title} to board`)
+	toast.success(t('addJob.success', { title: newJob.title }))
 	open.value = false
 }
 </script>
@@ -53,26 +55,25 @@ const onSubmit = () => {
 				class="grid gap-4"
 			>
 				<DialogHeader>
-					<DialogTitle>Ajouter un job</DialogTitle>
+					<DialogTitle>{{ $t('addJob.title') }}</DialogTitle>
 					<DialogDescription>
-						Ajoutez les détails de l'offre d'emploi qui vous intéresse pour
-						l’intégrer à votre Dashboard de suivi des candidatures.
+						{{ $t('addJob.description') }}
 					</DialogDescription>
 				</DialogHeader>
 
 				<div class="grid gap-2">
-					<Label for="offer">Nom du poste {{ newJob.title }}</Label>
+					<Label for="offer">{{ $t('addJob.jobTitle') }}</Label>
 					<Input v-model="newJob.title" id="offer" />
 				</div>
 
 				<div class="grid gap-2">
-					<Label for="company">Entreprise {{ newJob.company }}</Label>
+					<Label for="company">{{ $t('addJob.company') }}</Label>
 					<Input v-model="newJob.company" id="company" />
 				</div>
 
 				<DialogFooter>
 					<Button :for="`add-job-${status}`" type="button" @click="onSubmit">
-						Ajouter cette offre
+						{{ $t('addJob.button') }}
 					</Button>
 				</DialogFooter>
 			</form>

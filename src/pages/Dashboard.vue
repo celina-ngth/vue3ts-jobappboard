@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import Draggable from 'vuedraggable'
 import Text from '@/components/ui/Text.vue'
 import Icon from '@/components/ui/Icon.vue'
@@ -17,7 +17,9 @@ const columns = computed(() => data.value)
 	<div class="container">
 		<Text tag="h1">{{ $t('dashboard.title') }}</Text>
 
-		<div v-if="!columns?.length">Veuillez vous connecter</div>
+		<div v-if="!columns?.length && !isLoading">
+			{{ $t('dashboard.notAuthenticated') }}
+		</div>
 
 		<div v-if="isLoading">
 			<Icon name="LoaderCircle" class="mx-auto size-8 animate-spin" />

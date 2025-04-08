@@ -19,6 +19,7 @@
   },
   "dashboard": {
     "title": "Vos candidatures",
+    "notAuthenticated": "Veuillez vous connecter",
     "saved": {
       "title": "Sauvegardé"
     },
@@ -31,6 +32,14 @@
     "rejected": {
       "title": "Candidature refusée"
     }
+  },
+  "addJob": {
+    "title": "Ajouter une offre d'emploi",
+    "description": "Ajoutez les détails de l'offre d'emploi qui vous intéresse pour l’intégrer à votre Dashboard de suivi des candidatures.",
+    "jobTitle": "Nom du poste",
+    "company": "Nom de l'entreprise",
+    "button": "Ajouter cette offre",
+    "success": "L'offre d'emploi {title} a été ajoutée"
   },
   "navigation": {
     "greetings": "Hello {name} 👋"
