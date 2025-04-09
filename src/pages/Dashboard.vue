@@ -3,13 +3,15 @@ import { computed, ref, watchEffect } from 'vue'
 import Draggable from 'vuedraggable'
 import Text from '@/components/ui/Text.vue'
 import Icon from '@/components/ui/Icon.vue'
-import JobCard from '@/components/Dashboard/JobCard.vue'
-import AddJobModal from '@/components/Dashboard/AddJobModal.vue'
+import JobCard from '@/components/Job/JobCard.vue'
+import AddJobModal from '@/components/Job/AddJobModal.vue'
 import { useJobs } from '@/composables/useJobs'
 import { JobBoard, JobStatus } from '@/api/jobs/types'
 
 const { jobsQuery, updateJobMutation } = useJobs()
 const { data, isLoading } = jobsQuery()
+
+const localColumns = ref<JobBoard[]>([])
 
 const columns = computed(() => data.value)
 
@@ -21,8 +23,6 @@ async function handleStatusChange(e: any, columnId: JobStatus) {
 
 	updateJobMutation.mutate(updatedJob)
 }
-
-const localColumns = ref<JobBoard[]>([])
 
 watchEffect(() => {
 	if (data.value) {
