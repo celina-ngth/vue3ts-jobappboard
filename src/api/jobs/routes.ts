@@ -52,13 +52,11 @@ class JobAPI {
     const [jobResponse, userResponse] = await Promise.all([
       fetch(`${API_CONFIG.API_URL}/jobs`, {
         method: 'POST',
-        redirect: 'manual',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(job),
       }),
       fetch(`${API_CONFIG.API_URL}/user/${uid}`, {
         method: 'PATCH',
-        redirect: 'manual',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           jobs: [...data?.jobs, job.id],
@@ -73,6 +71,19 @@ class JobAPI {
     }
   }
 
+  async updateJob(job: Job) {
+    if (!job) return
+
+    const response = await fetch(`${API_CONFIG.API_URL}/jobs/${job.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(job),
+    })
+
+    if (!response.ok) {
+      throw new Error(`Jobs API Error : ${response.statusText}`)
+    }
+  }
 }
 
 export const jobAPI = new JobAPI()

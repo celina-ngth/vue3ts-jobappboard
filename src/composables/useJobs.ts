@@ -20,8 +20,15 @@ export function useJobs() {
     mutationKey: ['add-job'],
   })
 
+  const updateJobMutation = useMutation({
+    mutationFn: async (job: Job) => jobAPI.updateJob(job),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['all-jobs'] }),
+    mutationKey: ['update-job'],
+  })
+
   return {
     jobsQuery,
     addJobMutation,
+    updateJobMutation
   }
 }
