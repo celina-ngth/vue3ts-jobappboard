@@ -9,7 +9,7 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
 const authStore = useAuthStore()
-const newDisplayName = ref(authStore.user?.displayName || '')
+const newDisplayName = ref(authStore.user?.displayName ?? '')
 
 const saveDisplayName = async () => {
 	if (!newDisplayName.value.trim()) return

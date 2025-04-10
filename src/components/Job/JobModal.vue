@@ -19,14 +19,11 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const { addJobMutation, updateJobMutation } = useJobs()
 
-const props = defineProps({
-	job: {
-		type: Object as PropType<Job | null>
-	},
-	status: {
-		type: String as PropType<JobStatus>
-	}
-})
+interface Props {
+	status: JobStatus
+	job?: Job
+}
+const props = defineProps<Props>()
 
 const open = ref(false)
 
@@ -37,10 +34,6 @@ const newJob = reactive<Job>({
 	status: props.status ?? props.job?.status
 })
 
-const updateNewJob = () => {
-	newJob.status = props.status
-}
-
 const onSubmit = () => {
 	props.job ? updateJobMutation.mutate(newJob) : addJobMutation.mutate(newJob)
 	toast.success(
@@ -49,6 +42,10 @@ const onSubmit = () => {
 			: t('modal.success', { title: newJob.title })
 	)
 	open.value = false
+}
+
+const updateNewJob = () => {
+	newJob.status = props.status
 }
 
 watch(

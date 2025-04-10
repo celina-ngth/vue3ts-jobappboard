@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, ref, watchEffect } from 'vue'
+import { JobBoard, JobStatus } from '@/api/jobs/types'
+import { useJobs } from '@/composables/useJobs'
 import Draggable from 'vuedraggable'
+import JobCard from '@/components/Job/JobCard.vue'
+import JobModal from '@/components/Job/JobModal.vue'
 import Text from '@/components/ui/Text.vue'
 import Icon from '@/components/ui/Icon.vue'
 import { Button } from '@/components/ui/button'
-import JobCard from '@/components/Job/JobCard.vue'
-import JobModal from '@/components/Job/JobModal.vue'
-import { useJobs } from '@/composables/useJobs'
-import { JobBoard, JobStatus } from '@/api/jobs/types'
 import { toast } from 'vue-sonner'
 import { useI18n } from 'vue-i18n'
 

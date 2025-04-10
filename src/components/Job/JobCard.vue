@@ -10,7 +10,10 @@ import {
 	DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 
-defineProps<{ job: Job }>()
+interface Props {
+	job: Job
+}
+defineProps<Props>()
 
 const emit = defineEmits(['delete'])
 </script>

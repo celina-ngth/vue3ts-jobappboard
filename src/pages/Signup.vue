@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAuth } from '@/composables/useAuth'
 import Text from '@/components/ui/Text.vue'
 import Button from '@/components/ui/button/Button.vue'
-import { useAuth } from '@/composables/useAuth'
 import Input from '@/components/ui/input/Input.vue'
 
 const router = useRouter()
