@@ -1,45 +1,48 @@
 {
-  "common": {
-    "title": "Job application board"
-  },
   "authentication": {
     "login": {
-      "title": "Connexion",
       "button": "Se connecter",
-      "noAccount": "Vous n'avez pas encore de compte ?"
-    },
-    "signup": {
-      "title": "Inscription",
-      "button": "S'inscrire",
-      "hasAccount": "Vous avez déjà un compte ?"
+      "noAccount": "Vous n'avez pas encore de compte ?",
+      "title": "Connexion"
     },
     "logout": {
       "button": "Déconnexion"
+    },
+    "signup": {
+      "button": "S'inscrire",
+      "hasAccount": "Vous avez déjà un compte ?",
+      "title": "Inscription"
     }
   },
+  "common": {
+    "title": "Job application board"
+  },
   "dashboard": {
-    "title": "Vos candidatures",
-    "notAuthenticated": "Veuillez vous connecter",
-    "saved": {
-      "title": "Sauvegardé"
-    },
     "applied": {
       "title": "Candidature envoyée"
     },
     "interview": {
       "title": "Entretien"
     },
+    "notAuthenticated": "Veuillez vous connecter",
     "rejected": {
       "title": "Candidature refusée"
-    }
+    },
+    "saved": {
+      "title": "Sauvegardé"
+    },
+    "title": "Vos candidatures"
   },
-  "addJob": {
-    "title": "Ajouter une offre d'emploi",
+  "modal": {
+    "addButton": "Ajouter cette offre",
+    "addTitle": "Ajouter une offre d'emploi",
+    "company": "Nom de l'entreprise",
     "description": "Ajoutez les détails de l'offre d'emploi qui vous intéresse pour l’intégrer à votre Dashboard de suivi des candidatures.",
     "jobTitle": "Nom du poste",
-    "company": "Nom de l'entreprise",
-    "button": "Ajouter cette offre",
-    "success": "L'offre d'emploi {title} a été ajoutée"
+    "success": "L'offre d'emploi {title} a été ajoutée",
+    "updateButton": "Modifier cette offre",
+    "updated": "L'offre d'emploi {title} a été mise à jour",
+    "updateTitle": "Modifier une offre d'emploi"
   },
   "navigation": {
     "greetings": "Hello {name} 👋"

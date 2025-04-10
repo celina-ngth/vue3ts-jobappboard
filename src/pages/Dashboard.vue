@@ -3,8 +3,9 @@ import { computed, ref, watchEffect } from 'vue'
 import Draggable from 'vuedraggable'
 import Text from '@/components/ui/Text.vue'
 import Icon from '@/components/ui/Icon.vue'
+import { Button } from '@/components/ui/button'
 import JobCard from '@/components/Job/JobCard.vue'
-import AddJobModal from '@/components/Job/AddJobModal.vue'
+import JobModal from '@/components/Job/JobModal.vue'
 import { useJobs } from '@/composables/useJobs'
 import { JobBoard, JobStatus } from '@/api/jobs/types'
 
@@ -63,7 +64,11 @@ watchEffect(() => {
 					</div>
 
 					<div class="flex w-full flex-col gap-2 p-3">
-						<AddJobModal :status="column.id" class="h-[100px] w-full" />
+						<JobModal :status="column.id">
+							<Button class="w-full">
+								<Icon name="Plus" />
+							</Button>
+						</JobModal>
 
 						<Draggable
 							v-model="column.jobs"
