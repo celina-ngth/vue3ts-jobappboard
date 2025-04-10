@@ -5,9 +5,11 @@ import {
 import { auth, db } from '@/services/firebase'
 import { useAuthStore } from '@/stores/useAuthStore'
 import { doc, setDoc } from "firebase/firestore"
+import { useUser } from './useUser'
 
 export function useAuth() {
   const useAuthStoreInstance = useAuthStore()
+  const { createUserMutation } = useUser()
 
   const login = async (email: string, password: string) => {
     try {
@@ -51,7 +53,7 @@ export function useAuth() {
       })
 
       useAuthStoreInstance.user = newUser
-
+      createUserMutation.mutate(newUser)
     } catch (error) {
       throw error
     }

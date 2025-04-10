@@ -31,7 +31,6 @@ export const formatJobBoard = (data: Job[]): JobBoard[] => {
   ]
 }
 
-
 export const formatJob = (job: Job): Job => {
   return {
     id: job.id,
