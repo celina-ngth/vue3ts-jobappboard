@@ -8,21 +8,30 @@ import JobCard from '@/components/Job/JobCard.vue'
 import JobModal from '@/components/Job/JobModal.vue'
 import { useJobs } from '@/composables/useJobs'
 import { JobBoard, JobStatus } from '@/api/jobs/types'
+import { toast } from 'vue-sonner'
+import { useI18n } from 'vue-i18n'
 
-const { jobsQuery, updateJobMutation } = useJobs()
+const { t } = useI18n()
+const { jobsQuery, updateJobMutation, deleteJobMutation } = useJobs()
 const { data, isLoading } = jobsQuery()
 
 const localColumns = ref<JobBoard[]>([])
 
 const columns = computed(() => data.value)
 
-async function handleStatusChange(e: any, columnId: JobStatus) {
+const handleStatusChange = async (e: any, columnId: JobStatus) => {
 	if (!e.added) return
 
 	const { element } = e.added
 	const updatedJob = { ...element, status: columnId }
 
 	updateJobMutation.mutate(updatedJob)
+}
+
+const handleDelete = async (jobId: string) => {
+	deleteJobMutation.mutate(jobId)
+
+	toast.success(t('dashboard.deletedMessage'))
 }
 
 watchEffect(() => {
@@ -78,7 +87,11 @@ watchEffect(() => {
 							@change="handleStatusChange($event, column.id)"
 						>
 							<template #item="{ element: job }">
-								<JobCard :job="job" />
+								<JobCard
+									:job="job"
+									:status="column.id"
+									@delete="handleDelete(job.id)"
+								/>
 							</template>
 						</Draggable>
 					</div>

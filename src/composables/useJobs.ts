@@ -26,9 +26,16 @@ export function useJobs() {
     mutationKey: ['update-job'],
   })
 
+  const deleteJobMutation = useMutation({
+    mutationFn: async (id: string) => jobAPI.deleteJob(id, user?.uid),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['all-jobs'] }),
+    mutationKey: ['delete-job'],
+  })
+
   return {
     jobsQuery,
     addJobMutation,
-    updateJobMutation
+    updateJobMutation,
+    deleteJobMutation
   }
 }

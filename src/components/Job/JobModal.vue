@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PropType, reactive, ref } from 'vue'
+import { PropType, reactive, ref, watch } from 'vue'
 import { Button } from '@/components/ui/button'
 import {
 	Dialog,
@@ -34,8 +34,12 @@ const newJob = reactive<Job>({
 	id: props.job?.id ?? Date.now().toString(),
 	title: props.job?.title ?? '',
 	company: props.job?.company ?? '',
-	status: props.status
+	status: props.status ?? props.job?.status
 })
+
+const updateNewJob = () => {
+	newJob.status = props.status
+}
 
 const onSubmit = () => {
 	props.job ? updateJobMutation.mutate(newJob) : addJobMutation.mutate(newJob)
@@ -44,9 +48,15 @@ const onSubmit = () => {
 			? t('modal.updated', { title: newJob.title })
 			: t('modal.success', { title: newJob.title })
 	)
-
 	open.value = false
 }
+
+watch(
+	() => props.status,
+	() => {
+		updateNewJob()
+	}
+)
 </script>
 
 <template>
@@ -62,9 +72,9 @@ const onSubmit = () => {
 				class="grid gap-4"
 			>
 				<DialogHeader>
-					<DialogTitle>{{
-						$t(job ? 'modal.updateTitle' : 'modal.addTitle')
-					}}</DialogTitle>
+					<DialogTitle>
+						{{ $t(job ? 'modal.updateTitle' : 'modal.addTitle') }}
+					</DialogTitle>
 					<DialogDescription v-if="!job">
 						{{ $t('modal.description') }}
 					</DialogDescription>

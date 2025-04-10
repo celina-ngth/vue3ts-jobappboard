@@ -46,10 +46,10 @@ class JobAPI {
   async addJob(job: Job, uid: string | undefined) {
     if (!uid) return
 
-    const response = await fetch(`${API_CONFIG.API_URL}/user/${uid}`)
-    const data = await response.json()
+    const getUserResponse = await fetch(`${API_CONFIG.API_URL}/user/${uid}`)
+    const data = await getUserResponse.json()
 
-    const [jobResponse, userResponse] = await Promise.all([
+    const [jobResponse, updateUserResponse] = await Promise.all([
       fetch(`${API_CONFIG.API_URL}/jobs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -64,9 +64,9 @@ class JobAPI {
       }),
     ])
 
-    if (!jobResponse.ok || !userResponse.ok) {
+    if (!jobResponse.ok || !updateUserResponse.ok) {
       throw new Error(
-        `Jobs API Error : ${jobResponse.statusText} ${userResponse.statusText}`
+        `Jobs API Error : ${jobResponse.statusText} ${updateUserResponse.statusText}`
       )
     }
   }
@@ -82,6 +82,30 @@ class JobAPI {
 
     if (!response.ok) {
       throw new Error(`Jobs API Error : ${response.statusText}`)
+    }
+  }
+
+  async deleteJob(id: string, uid: string | undefined) {
+    if (!uid) return
+
+    const getUserResponse = await fetch(`${API_CONFIG.API_URL}/user/${uid}`)
+    const data = await getUserResponse.json()
+
+    const [jobResponse, updateUserResponse] = await Promise.all([
+      fetch(`${API_CONFIG.API_URL}/jobs/${id}`, {
+        method: 'DELETE',
+      }),
+      fetch(`${API_CONFIG.API_URL}/user/${uid}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          jobs: [...data?.jobs.filter((jobId: string) => jobId !== id)],
+        }),
+      }),
+    ])
+
+    if (!jobResponse.ok || !updateUserResponse.ok) {
+      throw new Error(`Jobs API Error : ${jobResponse.statusText} ${updateUserResponse.statusText}`)
     }
   }
 }

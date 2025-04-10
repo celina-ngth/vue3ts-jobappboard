@@ -21,6 +21,8 @@
     "applied": {
       "title": "Candidature envoyée"
     },
+    "delete": "Supprimer",
+    "deletedMessage": "L'offre d'emploi a été supprimée",
     "interview": {
       "title": "Entretien"
     },
