@@ -1,46 +1,3 @@
-<script setup lang="ts">
-import { computed, ref, watchEffect } from 'vue'
-import { JobBoard, JobStatus } from '@/api/jobs/types'
-import { useJobs } from '@/composables/useJobs'
-import Draggable from 'vuedraggable'
-import JobCard from '@/components/Job/JobCard.vue'
-import JobModal from '@/components/Job/JobModal.vue'
-import Text from '@/components/ui/Text.vue'
-import Icon from '@/components/ui/Icon.vue'
-import { Button } from '@/components/ui/button'
-import { toast } from 'vue-sonner'
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
-const { jobsQuery, updateJobMutation, deleteJobMutation } = useJobs()
-const { data, isLoading } = jobsQuery()
-
-const localColumns = ref<JobBoard[]>([])
-
-const columns = computed(() => data.value)
-
-const handleStatusChange = async (e: any, columnId: JobStatus) => {
-	if (!e.added) return
-
-	const { element } = e.added
-	const updatedJob = { ...element, status: columnId }
-
-	updateJobMutation.mutate(updatedJob)
-}
-
-const handleDelete = async (jobId: string) => {
-	deleteJobMutation.mutate(jobId)
-
-	toast.success(t('dashboard.deletedMessage'))
-}
-
-watchEffect(() => {
-	if (data.value) {
-		localColumns.value = JSON.parse(JSON.stringify(data.value))
-	}
-})
-</script>
-
 <template>
 	<div class="container">
 		<Text tag="h1">{{ $t('dashboard.title') }}</Text>
@@ -100,3 +57,46 @@ watchEffect(() => {
 		</div>
 	</div>
 </template>
+
+<script setup lang="ts">
+import { computed, ref, watchEffect } from 'vue'
+import { JobBoard, JobStatus } from '@/api/jobs/types'
+import { useJobs } from '@/composables/useJobs'
+import Draggable from 'vuedraggable'
+import JobCard from '@/components/job/JobCard.vue'
+import JobModal from '@/components/job/JobModal.vue'
+import Text from '@/components/ui/Text.vue'
+import Icon from '@/components/ui/Icon.vue'
+import { Button } from '@/components/ui/button'
+import { toast } from 'vue-sonner'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+const { jobsQuery, updateJobMutation, deleteJobMutation } = useJobs()
+const { data, isLoading } = jobsQuery()
+
+const localColumns = ref<JobBoard[]>([])
+
+const columns = computed(() => data.value)
+
+const handleStatusChange = async (e: any, columnId: JobStatus) => {
+	if (!e.added) return
+
+	const { element } = e.added
+	const updatedJob = { ...element, status: columnId }
+
+	updateJobMutation.mutate(updatedJob)
+}
+
+const handleDelete = async (jobId: string) => {
+	deleteJobMutation.mutate(jobId)
+
+	toast.success(t('dashboard.deletedMessage'))
+}
+
+watchEffect(() => {
+	if (data.value) {
+		localColumns.value = JSON.parse(JSON.stringify(data.value))
+	}
+})
+</script>

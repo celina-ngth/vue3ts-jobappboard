@@ -1,8 +1,3 @@
-<script setup lang="ts">
-import { RouterView } from 'vue-router'
-import Header from '@/components/Layout/Header.vue'
-</script>
-
 <template>
 	<div class="flex flex-col">
 		<Header />
@@ -12,3 +7,8 @@ import Header from '@/components/Layout/Header.vue'
 		</main>
 	</div>
 </template>
+
+<script setup lang="ts">
+import { RouterView } from 'vue-router'
+import Header from '@/components/layout/Header.vue'
+</script>

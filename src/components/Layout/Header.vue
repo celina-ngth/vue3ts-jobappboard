@@ -1,26 +1,3 @@
-<script setup lang="ts">
-import Button from '@/components/ui/button/Button.vue'
-import router from '@/router'
-import { useAuthStore } from '@/stores/useAuthStore'
-import { storeToRefs } from 'pinia'
-import {
-	NavigationMenu,
-	NavigationMenuContent,
-	NavigationMenuItem,
-	NavigationMenuLink,
-	NavigationMenuList,
-	NavigationMenuTrigger
-} from '@/components/ui/navigation-menu'
-
-const authStore = useAuthStore()
-const { user, isAuthenticated } = storeToRefs(authStore)
-
-const handleLogout = () => {
-	authStore.logout()
-	router.push('/login')
-}
-</script>
-
 <template>
 	<div class="fixed w-full bg-slate-800 py-2">
 		<div class="container flex items-center justify-between">
@@ -67,3 +44,26 @@ const handleLogout = () => {
 		</div>
 	</div>
 </template>
+
+<script setup lang="ts">
+import Button from '@/components/ui/button/Button.vue'
+import router from '@/router'
+import { useAuthStore } from '@/stores/useAuthStore'
+import { storeToRefs } from 'pinia'
+import {
+	NavigationMenu,
+	NavigationMenuContent,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	NavigationMenuTrigger
+} from '@/components/ui/navigation-menu'
+
+const authStore = useAuthStore()
+const { user, isAuthenticated } = storeToRefs(authStore)
+
+const handleLogout = () => {
+	authStore.logout()
+	router.push('/login')
+}
+</script>

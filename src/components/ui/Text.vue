@@ -1,3 +1,9 @@
+<template>
+	<component :is="tag" :class="textClasses">
+		<slot />
+	</component>
+</template>
+
 <script lang="ts" setup>
 const props = defineProps({
 	tag: {
@@ -14,9 +20,3 @@ const textClasses = {
 	p: 'text-base pb-2'
 }[props.tag]
 </script>
-
-<template>
-	<component :is="tag" :class="textClasses">
-		<slot />
-	</component>
-</template>

@@ -1,29 +1,3 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useAuth } from '@/composables/useAuth'
-import Text from '@/components/ui/Text.vue'
-import Button from '@/components/ui/button/Button.vue'
-import Label from '@/components/ui/label/Label.vue'
-import Input from '@/components/ui/input/Input.vue'
-
-const router = useRouter()
-const { login } = useAuth()
-
-const email = ref('')
-const password = ref('')
-const errorMessage = ref('')
-
-const handleLogin = async () => {
-	try {
-		await login(email.value, password.value)
-		router.push('/')
-	} catch (error) {
-		errorMessage.value = 'Erreur : ' + error.message
-	}
-}
-</script>
-
 <template>
 	<form @submit.prevent="handleLogin">
 		<Text tag="h1">{{ $t('authentication.login.title') }}</Text>
@@ -64,3 +38,29 @@ const handleLogin = async () => {
 		</div>
 	</form>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useAuth } from '@/composables/useAuth'
+import Text from '@/components/ui/Text.vue'
+import Button from '@/components/ui/button/Button.vue'
+import Label from '@/components/ui/label/Label.vue'
+import Input from '@/components/ui/input/Input.vue'
+
+const router = useRouter()
+const { login } = useAuth()
+
+const email = ref('')
+const password = ref('')
+const errorMessage = ref('')
+
+const handleLogin = async () => {
+	try {
+		await login(email.value, password.value)
+		router.push('/')
+	} catch (error) {
+		errorMessage.value = 'Erreur : ' + error.message
+	}
+}
+</script>

@@ -1,23 +1,3 @@
-<script lang="ts" setup>
-import { Job } from '@/api/jobs/types'
-import { Label } from '@/components/ui/label'
-import Icon from '@/components/ui/Icon.vue'
-import JobModal from '@/components/Job/JobModal.vue'
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
-
-interface Props {
-	job: Job
-}
-defineProps<Props>()
-
-const emit = defineEmits(['delete'])
-</script>
-
 <template>
 	<div
 		class="flex items-center justify-between rounded-md border border-slate-300 p-3 hover:cursor-pointer hover:bg-gray-100"
@@ -47,3 +27,22 @@ const emit = defineEmits(['delete'])
 		</DropdownMenu>
 	</div>
 </template>
+
+<script lang="ts" setup>
+import { Job } from '@/api/jobs/types'
+import { Label } from '@/components/ui/label'
+import Icon from '@/components/ui/Icon.vue'
+import JobModal from '@/components/job/JobModal.vue'
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
+
+defineProps<{
+	job: Job
+}>()
+
+const emit = defineEmits(['delete'])
+</script>

@@ -1,3 +1,7 @@
+<template>
+	<component :is="icon" />
+</template>
+
 <script setup>
 import { computed } from 'vue'
 import * as icons from 'lucide-vue-next'
@@ -11,7 +15,3 @@ const props = defineProps({
 
 const icon = computed(() => icons[props.name])
 </script>
-
-<template>
-	<component :is="icon" />
-</template>

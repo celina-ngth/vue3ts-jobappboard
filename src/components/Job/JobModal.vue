@@ -1,61 +1,3 @@
-<script lang="ts" setup>
-import { PropType, reactive, ref, watch } from 'vue'
-import { Button } from '@/components/ui/button'
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle
-} from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Job, JobStatus } from '@/api/jobs/types'
-import { useJobs } from '@/composables/useJobs'
-import { toast } from 'vue-sonner'
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
-const { addJobMutation, updateJobMutation } = useJobs()
-
-interface Props {
-	status: JobStatus
-	job?: Job
-}
-const props = defineProps<Props>()
-
-const open = ref(false)
-
-const newJob = reactive<Job>({
-	id: props.job?.id ?? Date.now().toString(),
-	title: props.job?.title ?? '',
-	company: props.job?.company ?? '',
-	status: props.status ?? props.job?.status
-})
-
-const onSubmit = () => {
-	props.job ? updateJobMutation.mutate(newJob) : addJobMutation.mutate(newJob)
-	toast.success(
-		props.job
-			? t('modal.updated', { title: newJob.title })
-			: t('modal.success', { title: newJob.title })
-	)
-	open.value = false
-}
-
-const updateNewJob = () => {
-	newJob.status = props.status
-}
-
-watch(
-	() => props.status,
-	() => {
-		updateNewJob()
-	}
-)
-</script>
-
 <template>
 	<Dialog v-model:open="open">
 		<div @click="open = true">
@@ -96,3 +38,60 @@ watch(
 		</DialogContent>
 	</Dialog>
 </template>
+
+<script lang="ts" setup>
+import { reactive, ref, watch } from 'vue'
+import { Button } from '@/components/ui/button'
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Job, JobStatus } from '@/api/jobs/types'
+import { useJobs } from '@/composables/useJobs'
+import { toast } from 'vue-sonner'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+const { addJobMutation, updateJobMutation } = useJobs()
+
+const props = defineProps<{
+	status: JobStatus
+	job?: Job
+}>()
+
+const open = ref(false)
+
+const newJob = reactive<Job>({
+	id: props.job?.id ?? Date.now().toString(),
+	title: props.job?.title ?? '',
+	company: props.job?.company ?? '',
+	status: props.status ?? props.job?.status
+})
+
+const onSubmit = () => {
+	props.job ? updateJobMutation.mutate(newJob) : addJobMutation.mutate(newJob)
+	toast.success(
+		props.job
+			? t('modal.updated', { title: newJob.title })
+			: t('modal.success', { title: newJob.title })
+	)
+	open.value = false
+}
+
+const updateNewJob = () => {
+	newJob.status = props.status
+}
+
+watch(
+	() => props.status,
+	() => {
+		updateNewJob()
+	}
+)
+</script>

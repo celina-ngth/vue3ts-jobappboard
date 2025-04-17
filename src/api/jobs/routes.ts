@@ -12,7 +12,7 @@ class JobAPI {
 
       if (!isAuthenticated) return []
 
-      const response = await fetch(`${API_CONFIG.API_URL}/user/${user?.uid}`)
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/user/${user?.uid}`)
       const data = await response.json()
 
       if (!response.ok) {
@@ -30,7 +30,7 @@ class JobAPI {
 
   async getJob(id: string): Promise<Job> {
     try {
-      const response = await fetch(`${API_CONFIG.API_URL}/jobs/${id}`)
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/jobs/${id}`)
       const data = await response.json()
 
       if (!response.ok) {
@@ -46,16 +46,16 @@ class JobAPI {
   async addJob(job: Job, uid: string | undefined) {
     if (!uid) return
 
-    const getUserResponse = await fetch(`${API_CONFIG.API_URL}/user/${uid}`)
+    const getUserResponse = await fetch(`${import.meta.env.VITE_API_URL}/user/${uid}`)
     const data = await getUserResponse.json()
 
     const [jobResponse, updateUserResponse] = await Promise.all([
-      fetch(`${API_CONFIG.API_URL}/jobs`, {
+      fetch(`${import.meta.env.VITE_API_URL}/jobs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(job),
       }),
-      fetch(`${API_CONFIG.API_URL}/user/${uid}`, {
+      fetch(`${import.meta.env.VITE_API_URL}/user/${uid}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -74,7 +74,7 @@ class JobAPI {
   async updateJob(job: Job) {
     if (!job) return
 
-    const response = await fetch(`${API_CONFIG.API_URL}/jobs/${job.id}`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/jobs/${job.id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(job),
@@ -88,14 +88,14 @@ class JobAPI {
   async deleteJob(id: string, uid: string | undefined) {
     if (!uid) return
 
-    const getUserResponse = await fetch(`${API_CONFIG.API_URL}/user/${uid}`)
+    const getUserResponse = await fetch(`${import.meta.env.VITE_API_URL}/user/${uid}`)
     const data = await getUserResponse.json()
 
     const [jobResponse, updateUserResponse] = await Promise.all([
-      fetch(`${API_CONFIG.API_URL}/jobs/${id}`, {
+      fetch(`${import.meta.env.VITE_API_URL}/jobs/${id}`, {
         method: 'DELETE',
       }),
-      fetch(`${API_CONFIG.API_URL}/user/${uid}`, {
+      fetch(`${import.meta.env.VITE_API_URL}/user/${uid}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

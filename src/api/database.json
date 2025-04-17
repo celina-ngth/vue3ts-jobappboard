@@ -25,6 +25,12 @@
       "id": "1744874964489",
       "title": "Développeuse front-end",
       "company": "Meta",
+      "status": "saved"
+    },
+    {
+      "id": "1744877228497",
+      "title": "Développeuse front-end",
+      "company": "Googlee",
       "status": "applied"
     }
   ],
@@ -44,7 +50,8 @@
     {
       "id": "B9sM7QtigKSMJxFMKW3JklNf4Di2",
       "jobs": [
-        "1744874964489"
+        "1744874964489",
+        "1744877228497"
       ]
     }
   ]
