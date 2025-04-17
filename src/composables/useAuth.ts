@@ -31,7 +31,7 @@ export function useAuth() {
     }
   }
 
-  const signup = async (email: string, password: string, displayName: string) => {
+  const signup = async (email: string, password: string) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -39,18 +39,6 @@ export function useAuth() {
         password
       )
       const newUser = userCredential.user
-
-      await setDoc(doc(db, "users", newUser.uid), {
-        displayName,
-        email,
-        wishlist: [{
-          id: 'job-1',
-          company: 'Google',
-          jobTitle: 'Développeur front-end',
-          url: 'https://google.com',
-          note: ''
-        }]
-      })
 
       useAuthStoreInstance.user = newUser
       createUserMutation.mutate(newUser)

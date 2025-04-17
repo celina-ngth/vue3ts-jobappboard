@@ -20,6 +20,12 @@
       "title": "Software Engineer",
       "status": "applied",
       "userId": "XCk0lQZhSPcqoqUZvdQgbgxxxnC2"
+    },
+    {
+      "id": "1744874964489",
+      "title": "Développeuse front-end",
+      "company": "Meta",
+      "status": "applied"
     }
   ],
   "user": [
@@ -29,6 +35,16 @@
         "1",
         "2",
         "3"
+      ]
+    },
+    {
+      "id": "doPck5UwmtMXmuG3aTWbGEXt1Im1",
+      "jobs": []
+    },
+    {
+      "id": "B9sM7QtigKSMJxFMKW3JklNf4Di2",
+      "jobs": [
+        "1744874964489"
       ]
     }
   ]

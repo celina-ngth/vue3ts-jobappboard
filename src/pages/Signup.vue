@@ -9,14 +9,13 @@ import Input from '@/components/ui/input/Input.vue'
 const router = useRouter()
 const { signup } = useAuth()
 
-const displayName = ref('')
 const email = ref('')
 const password = ref('')
 const errorMessage = ref('')
 
 const handleSignup = async () => {
 	try {
-		await signup(email.value, password.value, displayName.value)
+		await signup(email.value, password.value)
 		router.push('/')
 	} catch (error) {
 		errorMessage.value = 'Erreur : ' + error.message
@@ -29,12 +28,6 @@ const handleSignup = async () => {
 		<Text tag="h1">{{ $t('authentication.signup.title') }}</Text>
 
 		<div class="flex flex-col gap-3">
-			<Input
-				v-model="displayName"
-				label="Nom d'utilisateur"
-				placeholder="Entrez votre nom d'utilisateur"
-				class="p-2"
-			/>
 			<Input
 				v-model="email"
 				label="Email"
