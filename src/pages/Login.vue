@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { useAuth } from '@/composables/useAuth'
 import Text from '@/components/ui/Text.vue'
 import Button from '@/components/ui/button/Button.vue'
+import Label from '@/components/ui/label/Label.vue'
 import Input from '@/components/ui/input/Input.vue'
 
 const router = useRouter()
@@ -28,13 +29,16 @@ const handleLogin = async () => {
 		<Text tag="h1">{{ $t('authentication.login.title') }}</Text>
 
 		<div class="flex flex-col gap-3">
+			<Label>Votre adresse mail</Label>
 			<Input
 				v-model="email"
 				label="Email"
 				type="email"
 				placeholder="Votre adresse mail"
-				class="p-2"
+				class="mb-4 p-2"
 			/>
+
+			<Label>Votre mot de passe</Label>
 			<Input
 				v-model="password"
 				type="password"

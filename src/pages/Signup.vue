@@ -5,6 +5,7 @@ import { useAuth } from '@/composables/useAuth'
 import Text from '@/components/ui/Text.vue'
 import Button from '@/components/ui/button/Button.vue'
 import Input from '@/components/ui/input/Input.vue'
+import Label from '@/components/ui/label/Label.vue'
 
 const router = useRouter()
 const { signup } = useAuth()
@@ -28,13 +29,16 @@ const handleSignup = async () => {
 		<Text tag="h1">{{ $t('authentication.signup.title') }}</Text>
 
 		<div class="flex flex-col gap-3">
+			<Label>Votre adresse mail</Label>
 			<Input
 				v-model="email"
 				label="Email"
 				type="email"
 				placeholder="Votre adresse mail"
-				class="p-2"
+				class="mb-4 p-2"
 			/>
+
+			<Label>Votre mot de passe</Label>
 			<Input
 				v-model="password"
 				label="Mot de passe"
