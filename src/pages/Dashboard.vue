@@ -59,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watchEffect } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { JobBoard, JobStatus } from '@/api/jobs/types'
 import { useJobs } from '@/composables/useJobs'
 import Draggable from 'vuedraggable'
@@ -94,9 +94,13 @@ const handleDelete = async (jobId: string) => {
 	toast.success(t('dashboard.deletedMessage'))
 }
 
-watchEffect(() => {
-	if (data.value) {
-		localColumns.value = JSON.parse(JSON.stringify(data.value))
-	}
-})
+watch(
+	data,
+	(newVal) => {
+		if (newVal) {
+			localColumns.value = JSON.parse(JSON.stringify(newVal))
+		}
+	},
+	{ immediate: true }
+)
 </script>

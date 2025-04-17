@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
+import { useAuthStore } from '@/stores/useAuthStore'
 import { jobAPI } from '@/api/jobs/routes'
 import type { Job } from '@/api/jobs/types'
-import { useAuthStore } from '@/stores/useAuthStore'
 
 export function useJobs() {
   const queryClient = useQueryClient()

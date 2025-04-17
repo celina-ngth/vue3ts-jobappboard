@@ -2,9 +2,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword
 } from 'firebase/auth'
-import { auth, db } from '@/api/user/firebase'
+import { auth } from '@/api/user/firebase'
 import { useAuthStore } from '@/stores/useAuthStore'
-import { doc, setDoc } from "firebase/firestore"
 import { useUser } from './useUser'
 
 export function useAuth() {
