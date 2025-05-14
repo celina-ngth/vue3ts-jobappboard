@@ -3,21 +3,21 @@
 		<Text tag="h1">{{ $t('authentication.login.title') }}</Text>
 
 		<div class="flex flex-col gap-3">
-			<Label>Votre adresse mail</Label>
+			<Label>{{ $t('authentication.login.yourEmail') }}</Label>
 			<Input
 				v-model="email"
-				label="Email"
 				type="email"
-				placeholder="Votre adresse mail"
+				:label="$t('authentication.login.email')"
+				:placeholder="$t('authentication.login.yourEmail')"
 				class="mb-4 p-2"
 			/>
 
-			<Label>Votre mot de passe</Label>
+			<Label>{{ $t('authentication.login.yourPassword') }}</Label>
 			<Input
 				v-model="password"
 				type="password"
-				label="Mot de passe"
-				placeholder="Mot de passe"
+				:label="$t('authentication.login.password')"
+				:placeholder="$t('authentication.login.yourPassword')"
 				class="p-2"
 			/>
 

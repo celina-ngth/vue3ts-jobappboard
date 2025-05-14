@@ -1,6 +1,10 @@
 {
   "authentication": {
     "login": {
+      "yourEmail": "Votre adresse mail",
+      "yourPassword": "Votre mot de passe",
+      "email": "Email",
+      "password": "Mot de passe",
       "button": "Se connecter",
       "noAccount": "Vous n'avez pas encore de compte ?",
       "title": "Connexion"
@@ -51,6 +55,7 @@
   },
   "profile": {
     "title": "Mon profil",
+    "username": "Votre nom d'utilisateur",
     "updateButton": "Mettre à jour",
     "updatedMessage": "Votre profil a été mis à jour"
   }

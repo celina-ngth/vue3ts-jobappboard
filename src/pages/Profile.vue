@@ -3,15 +3,15 @@
 		<h2 class="mb-4 text-2xl font-bold">{{ $t('profile.title') }}</h2>
 
 		<div v-if="authStore.isAuthenticated" class="flex flex-col gap-4">
-			<Label>Votre adresse mail</Label>
+			<Label>{{ $t('authentication.login.yourEmail') }}</Label>
 			<Input
-				label="Votre email"
-				:placeholder="authStore.user?.email"
+				:label="$t('authentication.login.yourEmail')"
+				:placeholder="authStore.user?.email ?? $t('authentication.login.email')"
 				disabled
 				class="mb-4 p-2"
 			/>
 
-			<Label>Votre nom d'utilisateur</Label>
+			<Label>{{ $t('profile.username') }}</Label>
 			<Input
 				v-model="newDisplayName"
 				label="Votre nom d'utilisateur"

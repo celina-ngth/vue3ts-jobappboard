@@ -28,7 +28,7 @@
 						<NavigationMenuContent class="w-[150px]">
 							<NavigationMenuLink as-child>
 								<RouterLink to="/profile">
-									<div class="w-full">Profil</div>
+									<div class="w-full">{{ $t('profile.title') }}</div>
 								</RouterLink>
 							</NavigationMenuLink>
 
